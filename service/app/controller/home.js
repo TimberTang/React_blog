@@ -6,7 +6,7 @@ class HomeController extends Controller {
   async index() {
     const { ctx } = this;
     console.log(ctx);
-    ctx.body = 'hi, eggss';
+    ctx.body = 'Api接口';
   }
   async list() {
     const { ctx } = this;
