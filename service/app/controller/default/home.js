@@ -5,11 +5,20 @@ const Controller = require('egg').Controller;
 class HomeController extends Controller {
   async index() {
     const { ctx } = this;
-    ctx.body = 'Api 接口';
+    ctx.body = 'Api hi';
   }
-  async list() {
+  async getArticleList() {
     const { ctx } = this;
-    ctx.body = '<h1>TimberTang blog list</h1>';
+    const sql = 'SELECT article.id as id,' +
+    'article.title as title,' +
+    'article.introduce as introduce,' +
+    'article.add_time as addTime,' +
+    'article.view_count as view_count ,' +
+    'type.typeName as typeName ' +
+    'FROM article LEFT JOIN type ON article.type_id = type.Id';
+    console.log(sql);
+    const results = await this.app.mysql.query(sql);
+    ctx.body = { data: results };
   }
 }
 
